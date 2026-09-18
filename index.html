@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黔岭985领航工作室 - 个人展示</title>
+    <style>
+        /* 全局样式 */
+        :root {
+            --primary-color: #1a3a5c; /* 沉稳的深蓝色，符合教育专家气质 */
+            --accent-color: #c0392b; /* 点缀的红色，象征热情与成功 */
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部英雄区（含照片和介绍） */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #eef2f5 100%);
+            padding: 80px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-avatar {
+            flex: 0 0 300px;
+            text-align: center;
+        }
+
+        .hero-avatar img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-text .highlight-box {
+            background-color: #fff;
+            padding: 20px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .hero-text .highlight-box p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .hero-text .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-num {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* 视频展示区 */
+        .video-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .video-placeholder .play-icon {
+            font-size: 40px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .video-info p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* 底部 */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-avatar img {
+                width: 200px;
+                height: 200px;
+            }
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部个人展示区 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-avatar">
+                <!-- 这里的src需要替换成你实际图片的链接地址，如GitHub仓库中的图片 -->
+                <img src="your-image-url-here.jpg" alt="黔岭985领航工作室创始人">
+            </div>
+            <div class="hero-text">
+                <h1>黔岭985领航工作室</h1>
+                <div class="subtitle">企业、教育集团策划 | 30年教育教学经验</div>
+                <div class="highlight-box">
+                    <p>🎯 专攻：中小学生中等生变尖子生、学霸</p>
+                    <p>📈 成功率：<span class="stat-num">98%</span></p>
+                    <p>🏆 战绩：一对一培育了 <span class="stat-num">200余名</span> 中小学生上岸211、985大学</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频展示区（预留位置） -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">教学成果与分享</h2>
+            <!-- 视频卡片容器，由下面的JS动态生成 -->
+            <div class="video-grid" id="videoGrid">
+                <!-- 默认显示占位，JS生成后会被替换 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部信息 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 黔岭985领航工作室 | 专注教育，领航未来</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // 视频管理配置区（你只需要修改这里！）
+        // ============================================================
+        // 说明：
+        // 1. 每次你上传了新视频（比如上传到B站，或者上传到GitHub作为文件），
+        //    只需要在下面数组中增加一条记录即可。
+        // 2. videoUrl 可以是B站播放器链接、YouTube嵌入链接，或者视频文件的直链。
+        // 3. 如果是GitHub仓库里的视频文件，链接类似：
+        //    "https://github.com/你的用户名/你的仓库名/raw/main/videos/视频1.mp4"
+        // 4. 如果暂时还没有链接，可以留空或写 "#"，网页会显示"视频待上传"。
+        
+        const videoData = [
+            {
+                title: "中等生逆袭985的真实案例",
+                desc: "分享一位普通中学生如何通过三年规划成功上岸985大学的心路历程。",
+                videoUrl: "" // 在这里填入视频链接
+            },
+            {
+                title: "教育集团策划实战分享",
+                desc: "30年经验总结：如何为教育集团做顶层设计与战略规划。",
+                videoUrl: "" // 在这里填入视频链接
+            },
+            {
+                title: "家长课堂：如何激发孩子内驱力",
+                desc: "针对中小学生，家长如何配合学校做好家庭教育。",
+                videoUrl: "" // 在这里填入视频链接
+            }
+        ];
+
+        // ============================================================
+        // 以下是自动生成视频卡片的代码，不需要修改
+        // ============================================================
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = ''; // 清空默认内容
+
+            videoData.forEach((video) => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+
+                // 判断是否有视频链接
+                let mediaContent = '';
+                if (video.videoUrl && video.videoUrl.trim() !== '') {
+                    // 如果有链接，显示iframe（如果你放的是MP4直链，可以改成<video>标签）
+                    // 这里以iframe嵌入为例（适合B站、YouTube等）
+                    mediaContent = `
+                        <div style="width:100%; aspect-ratio:16/9;">
+                            <iframe src="${video.videoUrl}" 
+                                    style="width:100%; height:100%;" 
+                                    frameborder="0" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    `;
+                } else {
+                    // 如果没有链接，显示占位图
+                    mediaContent = `
+                        <div class="video-placeholder">
+                            <div class="play-icon">▶</div>
+                            <span>视频待上传</span>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    ${mediaContent}
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        <p>${video.desc}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 页面加载时执行渲染
+        document.addEventListener('DOMContentLoaded', renderVideos);
+    </script>
+</body>
+</html>
