@@ -5,48 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>黔岭985领航工作室 - 个人展示</title>
     <style>
-        /* --- 全局深蓝科技风 --- */
+        /* --- 全局：参考“未来界面蓝”配色 --- */
         :root {
-            --bg-dark: #0a0f1c;        /* 极深蓝背景 */
-            --bg-panel: #111827;       /* 面板底色 */
-            --accent-blue: #3b82f6;    /* 科技蓝 */
-            --accent-red: #ef4444;     /* 醒目红 */
-            --text-main: #f8fafc;      /* 主文字色 */
-            --text-light: #94a3b8;     /* 辅文字色 */
-            --glow-blue: rgba(59, 130, 246, 0.4);
-            --glow-red: rgba(239, 68, 68, 0.4);
+            --bg-main: #F4F7FF;       /* 系统白：柔和的淡蓝背景 */
+            --primary-blue: #5F86FF;  /* 界面蓝：主强调色 */
+            --light-blue: #A9C2FF;    /* 科技浅蓝：辅助渐变 */
+            --text-dark: #2F3E66;     /* 深界面蓝：主文字色 */
+            --text-light: #7A8BA8;    /* 辅助灰蓝色：描述文字 */
+            --white: #FFFFFF;
+            --shadow-soft: rgba(95, 134, 255, 0.08);
+            --shadow-glow: rgba(95, 134, 255, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
 
         body {
-            background-color: var(--bg-dark);
-            /* 增加微弱的网格线和光晕背景，告别死黑 */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-            color: var(--text-main);
+            /* 非常轻微的渐变，让淡蓝背景不呆板 */
+            background: linear-gradient(180deg, #F4F7FF 0%, #EBF0FA 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
             line-height: 1.7;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- 顶部人物介绍区 --- */
-        .hero { padding: 60px 0 20px; }
+        /* --- 顶部人物卡片 --- */
+        .hero { padding: 50px 0 20px; }
 
         .hero-content {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(20px);
+            background: var(--white);
             padding: 45px 30px;
-            border-radius: 28px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(59, 130, 246, 0.05);
+            border-radius: 30px;
+            box-shadow: 0 15px 40px var(--shadow-soft);
+            border: 1px solid rgba(169, 194, 255, 0.3);
             text-align: center;
+            /* 初始状态 */
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -55,12 +50,12 @@
         .hero-content.show { opacity: 1; transform: translateY(0); }
 
         .avatar-box {
-            width: 160px; height: 160px;
+            width: 150px; height: 150px;
             margin: 0 auto 25px;
             border-radius: 50%;
             padding: 4px;
-            background: linear-gradient(135deg, var(--accent-blue), transparent);
-            box-shadow: 0 0 30px var(--glow-blue);
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            box-shadow: 0 10px 25px var(--shadow-glow);
         }
 
         .avatar-box img {
@@ -68,20 +63,19 @@
         }
 
         .hero-title {
-            font-size: 2rem; color: #fff; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+            font-size: 2rem; color: var(--text-dark); font-weight: 800; letter-spacing: 2px; margin-bottom: 10px;
         }
 
-        .hero-sub { font-size: 1.05rem; color: var(--text-light); margin-bottom: 40px; }
+        .hero-sub { font-size: 1.05rem; color: var(--text-light); margin-bottom: 35px; font-weight: 500;}
 
-        /* --- 核心数据柱状图区 (新增) --- */
+        /* --- 核心数据柱状图区 --- */
         .stats-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px dashed rgba(59, 130, 246, 0.2);
+            margin-top: 20px;
+            padding-top: 25px;
+            border-top: 1px dashed rgba(95, 134, 255, 0.2);
         }
         .stats-title {
-            font-size: 1.1rem; color: var(--text-light); margin-bottom: 25px; letter-spacing: 2px;
+            font-size: 1rem; color: var(--text-light); margin-bottom: 20px; letter-spacing: 1px;
         }
         
         .chart-container {
@@ -90,7 +84,6 @@
             align-items: flex-end;
             height: 180px;
             padding: 0 10px;
-            position: relative;
         }
 
         .bar-wrapper {
@@ -102,121 +95,124 @@
             justify-content: flex-end;
         }
 
-        /* 柱子的真实高度由 JS 动态设置 */
+        /* 柱子：科技蓝渐变 */
         .bar {
             width: 100%;
-            max-width: 50px;
-            height: 0; /* 初始高度为0 */
-            background: linear-gradient(to top, rgba(59, 130, 246, 0.2), var(--accent-blue));
+            max-width: 46px;
+            height: 0; /* 初始高度为0，由 JS 控制生长 */
+            background: linear-gradient(to top, var(--light-blue), var(--primary-blue));
             border-radius: 8px 8px 0 0;
-            box-shadow: 0 0 20px var(--glow-blue);
-            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1); /* 弹性生长动效 */
+            box-shadow: 0 5px 15px rgba(95, 134, 255, 0.2);
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1); 
             position: relative;
         }
-        /* 让柱顶发光更亮 */
+        /* 柱顶发光点，增加科技感 */
         .bar::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: #fff; border-radius: 8px 8px 0 0; box-shadow: 0 0 15px #fff;
+            content: ''; position: absolute; top: -2px; left: 50%; transform: translateX(-50%);
+            width: 12px; height: 4px; background: #fff; border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-blue);
         }
 
         .bar-num {
-            font-size: 1.4rem; font-weight: 900; color: #fff; margin-bottom: 8px;
-            text-shadow: 0 0 15px var(--glow-blue);
+            font-size: 1.3rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 6px;
             opacity: 0; /* 初始透明 */
-            transition: opacity 1s ease 0.5s; /* 延迟出现 */
+            transition: opacity 1s ease 0.6s; 
         }
         .bar-num.show { opacity: 1; }
 
         .bar-label {
-            font-size: 0.85rem; color: var(--text-light); margin-top: 10px; text-align: center;
-            line-height: 1.2;
+            font-size: 0.8rem; color: var(--text-light); margin-top: 10px; text-align: center;
+            line-height: 1.2; font-weight: 500;
         }
 
-        /* --- 核心优势模块 (新增) --- */
-        .features-section { padding: 50px 0 20px; }
+        /* --- 核心优势卡片 --- */
+        .features-section { padding: 30px 0 20px; }
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 15px;
         }
         .feature-card {
-            background: rgba(17, 24, 39, 0.6);
-            border: 1px solid rgba(59, 130, 246, 0.15);
+            background: var(--white);
+            border: 1px solid rgba(169, 194, 255, 0.4);
             padding: 25px 15px;
-            border-radius: 18px;
+            border-radius: 20px;
             text-align: center;
+            box-shadow: 0 8px 20px var(--shadow-soft);
             transition: all 0.4s ease;
         }
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 30px var(--shadow-glow);
         }
         .feature-icon {
-            font-size: 1.8rem; margin-bottom: 12px; display: inline-block;
+            font-size: 1.6rem; margin-bottom: 10px; display: inline-block;
+            color: var(--primary-blue);
         }
-        .feature-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .feature-title { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
         .feature-desc { font-size: 0.85rem; color: var(--text-light); }
 
         /* --- 视频展示区 --- */
-        .video-section { padding: 40px 0 60px; }
+        .video-section { padding: 30px 0 60px; }
 
         .section-title {
-            text-align: center; font-size: 1.8rem; color: #fff; margin-bottom: 40px;
-            position: relative; letter-spacing: 2px;
+            text-align: center; font-size: 1.6rem; color: var(--text-dark); margin-bottom: 35px;
+            position: relative; font-weight: 700;
         }
         .section-title::after {
-            content: ''; display: block; width: 50px; height: 3px;
-            background: var(--accent-blue); margin: 15px auto 0; border-radius: 2px;
-            box-shadow: 0 0 10px var(--glow-blue);
+            content: ''; display: block; width: 40px; height: 4px;
+            background: var(--primary-blue); margin: 12px auto 0; border-radius: 2px;
+            box-shadow: 0 2px 8px var(--shadow-glow);
         }
 
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .video-card {
-            background: rgba(17, 24, 39, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--white);
+            border: 1px solid rgba(169, 194, 255, 0.4);
             border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, box-shadow 0.4s ease, border-color 0.4s;
+            box-shadow: 0 8px 20px var(--shadow-soft);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, box-shadow 0.4s ease;
             opacity: 0;
-            transform: translateY(60px); 
+            transform: translateY(50px); 
         }
 
         .video-card.show { opacity: 1; transform: translateY(0); }
         
         .video-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px var(--shadow-glow);
         }
 
         .video-placeholder {
             width: 100%; aspect-ratio: 16 / 9;
-            background: rgba(30, 41, 59, 0.5);
+            background: #EEF3FB;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: var(--text-light); border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-light); border-bottom: 1px solid rgba(169, 194, 255, 0.3);
         }
 
         .play-icon {
-            font-size: 40px; color: var(--accent-blue); margin-bottom: 8px;
-            transition: transform 0.3s, text-shadow 0.3s;
+            font-size: 36px; color: var(--primary-blue); margin-bottom: 8px;
+            transition: transform 0.3s;
         }
-        .video-card:hover .play-icon { transform: scale(1.15); text-shadow: 0 0 20px var(--glow-blue); }
+        .video-card:hover .play-icon { transform: scale(1.15); }
 
-        .video-info { padding: 22px; }
-        .video-info h3 { font-size: 1.1rem; color: #fff; margin-bottom: 8px; }
-        .video-info p { font-size: 0.9rem; color: var(--text-light); }
+        .video-info { padding: 20px; }
+        .video-info h3 { font-size: 1.05rem; color: var(--text-dark); margin-bottom: 6px; }
+        .video-info p { font-size: 0.85rem; color: var(--text-light); }
 
         /* --- 底部 --- */
         footer {
-            background: #070b14; color: #475569; text-align: center;
+            background: var(--white); color: var(--text-light); text-align: center;
             padding: 30px 0; margin-top: 40px; font-size: 0.85rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(169, 194, 255, 0.3);
+            box-shadow: 0 -5px 20px rgba(95, 134, 255, 0.03);
         }
 
         /* --- 手机端适配 --- */
@@ -224,9 +220,8 @@
             .hero-content { padding: 30px 20px; }
             .hero-title { font-size: 1.7rem; }
             .chart-container { height: 150px; }
-            .bar-num { font-size: 1.2rem; }
+            .bar-num { font-size: 1.15rem; }
             .feature-grid { grid-template-columns: 1fr; gap: 12px; }
-            .feature-card { padding: 20px 15px; }
             .video-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -238,7 +233,7 @@
         <section class="hero">
             <div class="hero-content" id="heroCard">
                 <div class="avatar-box">
-                    <!-- ⚠️ 确保你的图片名为 avatar.jpg -->
+                    <!-- ⚠️ 保持图片名为 avatar.jpg -->
                     <img src="avatar.jpg.png" alt="黔岭985领航工作室创始人">
                 </div>
                 <h1 class="hero-title">黔岭985领航工作室</h1>
@@ -254,7 +249,7 @@
             </div>
         </section>
 
-        <!-- 核心优势区 (新增) -->
+        <!-- 核心优势区 -->
         <section class="features-section">
             <div class="feature-grid" id="featureGrid">
                 <!-- 优势卡片由 JS 生成 -->
@@ -279,10 +274,10 @@
         // 数据配置区
         // ============================================================
         
-        // 1. 柱状图数据（高度百分比，请根据实际数值填写，最大100）
+        // 1. 柱状图数据
         const chartData = [
             { label: '中等生逆袭成功率', value: 98, unit: '%' },
-            { label: '学员上岸211/985', value: 200, unit: '+' },  // 这里数字写大一点没问题，代码会自动适配视觉高度
+            { label: '学员上岸211/985', value: 200, unit: '+' },
             { label: '深耕教育年限', value: 30, unit: '年' }
         ];
 
@@ -293,7 +288,7 @@
             { icon: '📈', title: '结果导向', desc: '98%成功率，拒绝无效努力' }
         ];
 
-        // 3. 视频配置（填入电脑版抖音或B站的嵌入代码链接）
+        // 3. 视频配置（填入抖音或B站的嵌入代码链接）
         const videoData = [
             { title: "中等生逆袭985的真实案例", desc: "分享一位普通中学生如何通过三年规划成功上岸985大学的心路历程。", videoUrl: "" },
             { title: "教育集团策划实战分享", desc: "30年经验总结：如何为教育集团做顶层设计与战略规划。", videoUrl: "" },
@@ -304,23 +299,21 @@
         // 核心逻辑：生成内容 + 动效监听
         // ============================================================
         function renderApp() {
-            // 1. 渲染柱状图 (根据数值计算视觉高度，最高100%)
+            // 1. 渲染柱状图 (根据数值计算视觉高度)
             const chartContainer = document.getElementById('chartContainer');
             chartContainer.innerHTML = '';
             
-            // 找出最大值，用来计算相对高度比例
             const maxVal = Math.max(...chartData.map(d => d.value));
             
             chartData.forEach((item, index) => {
-                // 计算柱子视觉高度 (最高不超过90%，最低20%)
-                let visualHeight = (item.value / maxVal) * 85; 
-                visualHeight = Math.max(visualHeight, 15); 
+                let visualHeight = (item.value / maxVal) * 80; 
+                visualHeight = Math.max(visualHeight, 20); // 最低20%
 
                 const wrapper = document.createElement('div');
                 wrapper.className = 'bar-wrapper';
                 
-                // 延迟动画：依次上升
-                const delay = index * 0.3 + 0.3; 
+                // 依次上升的延迟时间
+                const delay = index * 0.3 + 0.2; 
 
                 wrapper.innerHTML = `
                     <div class="bar-num" style="transition-delay: ${delay + 0.8}s">${item.value}${item.unit}</div>
@@ -367,7 +360,7 @@
                 grid.appendChild(card);
             });
 
-            // 4. 设置滚动动画监听器
+            // 4. 滚动动画监听器
             const observerOptions = {
                 root: null,
                 rootMargin: '0px 0px -50px 0px',
@@ -388,7 +381,7 @@
                                 document.querySelectorAll('.bar-num').forEach(num => {
                                     num.classList.add('show');
                                 });
-                            }, 200); // 等卡片浮上来一点后再长柱子
+                            }, 300); 
                         }
                         
                         obs.unobserve(entry.target); 
@@ -396,7 +389,6 @@
                 });
             }, observerOptions);
 
-            // 把顶部卡片、优势卡片和视频卡片加入监听
             const elementsToAnimate = document.querySelectorAll('#heroCard, .feature-card, .video-card');
             elementsToAnimate.forEach(el => observer.observe(el));
         }
