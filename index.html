@@ -5,109 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>黔岭985领航工作室 - 个人展示</title>
     <style>
-        /* 全局样式 */
+        /* --- 全局美化 --- */
         :root {
-            --primary-color: #1a3a5c; /* 沉稳的深蓝色，符合教育专家气质 */
-            --accent-color: #c0392b; /* 点缀的红色，象征热情与成功 */
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --card-bg: #ffffff;
+            --primary-color: #1a3a5c; /* 深沉蓝 */
+            --accent-color: #c0392b; /* 成功红 */
+            --text-main: #2c3e50;
+            --text-light: #7f8c8d;
+            --card-bg: rgba(255, 255, 255, 0.85); /* 半透明卡片 */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            /* 优雅的浅灰蓝渐变背景 */
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* 顶部英雄区（含照片和介绍） */
-        .hero {
-            background: linear-gradient(135deg, #ffffff 0%, #eef2f5 100%);
-            padding: 80px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
+        /* --- 顶部英雄区 --- */
+        .hero { padding: 70px 0 50px; position: relative; }
+        
         .hero-content {
             display: flex;
             align-items: center;
             gap: 50px;
             flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            backdrop-filter: blur(10px); /* 毛玻璃效果 */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.6);
+            transition: transform 0.4s ease;
         }
 
-        .hero-avatar {
-            flex: 0 0 300px;
-            text-align: center;
-        }
-
+        .hero-avatar { flex: 0 0 220px; text-align: center; }
         .hero-avatar img {
-            width: 280px;
-            height: 280px;
+            width: 200px; height: 200px;
             object-fit: cover;
             border-radius: 50%;
-            border: 6px solid #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 5px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease;
         }
+        .hero-avatar img:hover { transform: scale(1.05); }
 
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
+        .hero-text { flex: 1; min-width: 280px; }
         .hero-text h1 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
+            font-weight: 700;
         }
 
-        .hero-text .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 20px;
-            font-weight: 500;
+        /* 数据展示区美化 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
         }
-
-        .hero-text .highlight-box {
-            background-color: #fff;
-            padding: 20px;
-            border-left: 5px solid var(--accent-color);
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        .stat-item {
+            background: rgba(255,255,255,0.9);
+            padding: 18px;
+            border-radius: 14px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .hero-text .highlight-box p {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+        .stat-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
-
-        .hero-text .highlight-box p:last-child {
-            margin-bottom: 0;
-        }
-
         .stat-num {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.3rem;
+            margin-bottom: 5px;
         }
+        .stat-label { font-size: 0.95rem; color: var(--text-light); }
 
-        /* 视频展示区 */
-        .video-section {
-            padding: 80px 0;
-        }
-
+        /* --- 视频区 --- */
+        .video-section { padding: 60px 0; }
         .section-title {
             text-align: center;
             font-size: 2rem;
@@ -115,95 +103,80 @@
             margin-bottom: 50px;
             position: relative;
         }
-
         .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--accent-color);
+            content: ''; display: block;
+            width: 60px; height: 4px;
+            background: var(--accent-color);
             margin: 15px auto 0;
             border-radius: 2px;
         }
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 30px;
         }
 
+        /* 视频卡片样式 + 动效 */
         .video-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* 初始状态：向下偏移且透明 */
+            opacity: 0;
+            transform: translateY(30px);
         }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        
+        /* 当滑动到可视区域时，触发此动画类 */
+        .video-card.show {
+            opacity: 1;
+            transform: translateY(0);
         }
+        
+        .video-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
 
         .video-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #e9ecef;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            border-bottom: 3px solid var(--primary-color);
+            width: 100%; aspect-ratio: 16 / 9;
+            background: #eef2f5;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: var(--text-light);
         }
-
-        .video-placeholder .play-icon {
-            font-size: 40px;
+        .play-icon {
+            font-size: 45px;
             color: var(--accent-color);
             margin-bottom: 10px;
+            transition: transform 0.3s;
         }
+        .video-card:hover .play-icon { transform: scale(1.1); }
 
-        .video-info {
-            padding: 20px;
-        }
+        .video-info { padding: 25px; }
+        .video-info h3 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 10px; }
+        .video-info p { font-size: 0.95rem; color: var(--text-light); }
 
-        .video-info h3 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .video-info p {
-            font-size: 0.95rem;
-            color: #666;
-        }
-
-        /* 底部 */
+        /* --- 底部 --- */
         footer {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: #fff;
             text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-radius: 30px 30px 0 0;
         }
 
-        /* 响应式调整 */
+        /* --- 手机端适配 --- */
         @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            .hero-avatar img {
-                width: 200px;
-                height: 200px;
-            }
-            .hero-text h1 {
-                font-size: 1.8rem;
-            }
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero { padding: 30px 0; }
+            .hero-content { flex-direction: column; text-align: center; padding: 30px 20px; gap: 25px; }
+            .hero-avatar img { width: 160px; height: 160px; }
+            .hero-text h1 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 10px; }
+            .video-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -213,33 +186,42 @@
     <section class="hero">
         <div class="container hero-content">
             <div class="hero-avatar">
-                <!-- 这里的src需要替换成你实际图片的链接地址，如GitHub仓库中的图片 -->
+                <!-- ⚠️ 如果你上传的图片不叫 avatar.jpg，请修改下面 src 里的名字 -->
                 <img src="avatar.jpg.png" alt="黔岭985领航工作室创始人">
             </div>
             <div class="hero-text">
                 <h1>黔岭985领航工作室</h1>
-                <div class="subtitle">企业、教育集团策划 | 30年教育教学经验</div>
-                <div class="highlight-box">
-                    <p>🎯 专攻：中小学生中等生变尖子生、学霸</p>
-                    <p>📈 成功率：<span class="stat-num">98%</span></p>
-                    <p>🏆 战绩：一对一培育了 <span class="stat-num">200余名</span> 中小学生上岸211、985大学</p>
+                <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 15px;">企业、教育集团策划 | 30年教育教学经验</p>
+                
+                <!-- 重新设计的核心数据区 -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-num">98%</span>
+                        <span class="stat-label">中等生变尖子生成功率</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">200+</span>
+                        <span class="stat-label">一对一培育上岸211/985</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">30年</span>
+                        <span class="stat-label">深耕教育教学经验</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 视频展示区（预留位置） -->
+    <!-- 视频展示区 -->
     <section class="video-section">
         <div class="container">
             <h2 class="section-title">教学成果与分享</h2>
-            <!-- 视频卡片容器，由下面的JS动态生成 -->
             <div class="video-grid" id="videoGrid">
-                <!-- 默认显示占位，JS生成后会被替换 -->
+                <!-- JS 会自动在这里生成卡片 -->
             </div>
         </div>
     </section>
 
-    <!-- 底部信息 -->
     <footer>
         <div class="container">
             <p>&copy; 2026 黔岭985领航工作室 | 专注教育，领航未来</p>
@@ -248,65 +230,49 @@
 
     <script>
         // ============================================================
-        // 视频管理配置区（你只需要修改这里！）
+        // 视频管理配置区（只需修改这里，添加视频链接）
         // ============================================================
-        // 说明：
-        // 1. 每次你上传了新视频（比如上传到B站，或者上传到GitHub作为文件），
-        //    只需要在下面数组中增加一条记录即可。
-        // 2. videoUrl 可以是B站播放器链接、YouTube嵌入链接，或者视频文件的直链。
-        // 3. 如果是GitHub仓库里的视频文件，链接类似：
-        //    "https://github.com/你的用户名/你的仓库名/raw/main/videos/视频1.mp4"
-        // 4. 如果暂时还没有链接，可以留空或写 "#"，网页会显示"视频待上传"。
-        
         const videoData = [
             {
                 title: "中等生逆袭985的真实案例",
                 desc: "分享一位普通中学生如何通过三年规划成功上岸985大学的心路历程。",
-                videoUrl: "" // 在这里填入视频链接
+                videoUrl: "" // 填入电脑端抖音或B站的“嵌入代码”链接
             },
             {
                 title: "教育集团策划实战分享",
                 desc: "30年经验总结：如何为教育集团做顶层设计与战略规划。",
-                videoUrl: "" // 在这里填入视频链接
+                videoUrl: ""
             },
             {
                 title: "家长课堂：如何激发孩子内驱力",
                 desc: "针对中小学生，家长如何配合学校做好家庭教育。",
-                videoUrl: "" // 在这里填入视频链接
+                videoUrl: ""
             }
         ];
 
         // ============================================================
-        // 以下是自动生成视频卡片的代码，不需要修改
+        // 自动生成卡片 + 滑动动画效果（无需修改）
         // ============================================================
         function renderVideos() {
             const grid = document.getElementById('videoGrid');
-            grid.innerHTML = ''; // 清空默认内容
+            grid.innerHTML = ''; 
 
             videoData.forEach((video) => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
 
-                // 判断是否有视频链接
                 let mediaContent = '';
                 if (video.videoUrl && video.videoUrl.trim() !== '') {
-                    // 如果有链接，显示iframe（如果你放的是MP4直链，可以改成<video>标签）
-                    // 这里以iframe嵌入为例（适合B站、YouTube等）
                     mediaContent = `
                         <div style="width:100%; aspect-ratio:16/9;">
-                            <iframe src="${video.videoUrl}" 
-                                    style="width:100%; height:100%;" 
-                                    frameborder="0" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe src="${video.videoUrl}" style="width:100%; height:100%;" frameborder="0" allowfullscreen></iframe>
                         </div>
                     `;
                 } else {
-                    // 如果没有链接，显示占位图
                     mediaContent = `
                         <div class="video-placeholder">
                             <div class="play-icon">▶</div>
-                            <span>视频待上传</span>
+                            <span>视频准备中</span>
                         </div>
                     `;
                 }
@@ -320,9 +286,28 @@
                 `;
                 grid.appendChild(card);
             });
+
+            // 初始化滚动监听（实现滑动到可视区才浮现的效果）
+            initScrollAnimation();
         }
 
-        // 页面加载时执行渲染
+        // 滚动动画逻辑
+        function initScrollAnimation() {
+            const cards = document.querySelectorAll('.video-card');
+            
+            // 使用 Intersection Observer 监听卡片是否进入屏幕
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target); // 出现后停止监听
+                    }
+                });
+            }, { threshold: 0.1 }); // 卡片出现10%就触发
+
+            cards.forEach(card => observer.observe(card));
+        }
+
         document.addEventListener('DOMContentLoaded', renderVideos);
     </script>
 </body>
