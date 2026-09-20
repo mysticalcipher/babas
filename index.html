@@ -7,11 +7,11 @@
     <style>
         /* --- 全局：参考“未来界面蓝”配色 --- */
         :root {
-            --bg-main: #F4F7FF;       /* 系统白：柔和的淡蓝背景 */
-            --primary-blue: #5F86FF;  /* 界面蓝：主强调色 */
-            --light-blue: #A9C2FF;    /* 科技浅蓝：辅助渐变 */
-            --text-dark: #2F3E66;     /* 深界面蓝：主文字色 */
-            --text-light: #7A8BA8;    /* 辅助灰蓝色：描述文字 */
+            --bg-main: #F4F7FF;       
+            --primary-blue: #5F86FF;  
+            --light-blue: #A9C2FF;    
+            --text-dark: #2F3E66;     
+            --text-light: #7A8BA8;    
             --white: #FFFFFF;
             --shadow-soft: rgba(95, 134, 255, 0.08);
             --shadow-glow: rgba(95, 134, 255, 0.25);
@@ -20,7 +20,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
 
         body {
-            /* 非常轻微的渐变，让淡蓝背景不呆板 */
             background: linear-gradient(180deg, #F4F7FF 0%, #EBF0FA 100%);
             min-height: 100vh;
             color: var(--text-dark);
@@ -41,7 +40,6 @@
             box-shadow: 0 15px 40px var(--shadow-soft);
             border: 1px solid rgba(169, 194, 255, 0.3);
             text-align: center;
-            /* 初始状态 */
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -95,18 +93,16 @@
             justify-content: flex-end;
         }
 
-        /* 柱子：科技蓝渐变 */
         .bar {
             width: 100%;
             max-width: 46px;
-            height: 0; /* 初始高度为0，由 JS 控制生长 */
+            height: 0; 
             background: linear-gradient(to top, var(--light-blue), var(--primary-blue));
             border-radius: 8px 8px 0 0;
             box-shadow: 0 5px 15px rgba(95, 134, 255, 0.2);
             transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1); 
             position: relative;
         }
-        /* 柱顶发光点，增加科技感 */
         .bar::after {
             content: ''; position: absolute; top: -2px; left: 50%; transform: translateX(-50%);
             width: 12px; height: 4px; background: #fff; border-radius: 50%;
@@ -115,7 +111,7 @@
 
         .bar-num {
             font-size: 1.3rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 6px;
-            opacity: 0; /* 初始透明 */
+            opacity: 0; 
             transition: opacity 1s ease 0.6s; 
         }
         .bar-num.show { opacity: 1; }
@@ -153,9 +149,36 @@
         .feature-title { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
         .feature-desc { font-size: 0.85rem; color: var(--text-light); }
 
+        /* --- 精英培养与突破模块 --- */
+        .service-section { padding: 20px 0 10px; }
+        .service-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .service-card {
+            background: var(--white);
+            border-left: 5px solid var(--primary-blue);
+            border-radius: 16px;
+            padding: 25px 20px;
+            box-shadow: 0 8px 20px var(--shadow-soft);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .service-card.show { opacity: 1; transform: translateY(0); }
+        .service-card:hover { transform: translateX(5px); box-shadow: 0 10px 25px var(--shadow-glow); }
+        .service-icon {
+            font-size: 1.8rem; background: rgba(95, 134, 255, 0.1);
+            width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; flex-shrink: 0;
+        }
+        .service-content h4 { font-size: 1.05rem; color: var(--text-dark); margin-bottom: 5px; font-weight: 700; }
+        .service-content p { font-size: 0.9rem; color: var(--text-light); }
+        .service-highlight { color: var(--primary-blue); font-weight: 700; }
+
         /* --- 视频展示区 --- */
         .video-section { padding: 30px 0 60px; }
-
         .section-title {
             text-align: center; font-size: 1.6rem; color: var(--text-dark); margin-bottom: 35px;
             position: relative; font-weight: 700;
@@ -181,27 +204,35 @@
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, box-shadow 0.4s ease;
             opacity: 0;
             transform: translateY(50px); 
+            cursor: pointer; /* 鼠标放上去变成小手，表示可以点击 */
         }
 
         .video-card.show { opacity: 1; transform: translateY(0); }
-        
         .video-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 35px var(--shadow-glow);
+            border-color: var(--primary-blue); /* 悬浮时边框变蓝 */
         }
 
+        /* 跳转按钮的样式 */
         .video-placeholder {
             width: 100%; aspect-ratio: 16 / 9;
             background: #EEF3FB;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: var(--text-light); border-bottom: 1px solid rgba(169, 194, 255, 0.3);
+            color: var(--primary-blue); 
+            border-bottom: 1px solid rgba(169, 194, 255, 0.3);
+            transition: background 0.3s;
         }
+        .video-card:hover .video-placeholder { background: #E2EBFA; }
 
         .play-icon {
             font-size: 36px; color: var(--primary-blue); margin-bottom: 8px;
             transition: transform 0.3s;
+            background: rgba(95, 134, 255, 0.1); width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            padding-left: 5px; /* 视觉居中微调 */
         }
-        .video-card:hover .play-icon { transform: scale(1.15); }
+        .video-card:hover .play-icon { transform: scale(1.1); background: rgba(95, 134, 255, 0.2); }
 
         .video-info { padding: 20px; }
         .video-info h3 { font-size: 1.05rem; color: var(--text-dark); margin-bottom: 6px; }
@@ -223,6 +254,7 @@
             .bar-num { font-size: 1.15rem; }
             .feature-grid { grid-template-columns: 1fr; gap: 12px; }
             .video-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -233,8 +265,7 @@
         <section class="hero">
             <div class="hero-content" id="heroCard">
                 <div class="avatar-box">
-                    <!-- ⚠️ 保持图片名为 avatar.jpg -->
-                    <img src="avatar.jpg.png" alt="黔岭985领航工作室创始人">
+                    <img src="avatar.jpg" alt="黔岭985领航工作室创始人">
                 </div>
                 <h1 class="hero-title">黔岭985领航工作室</h1>
                 <p class="hero-sub">企业、教育集团策划 | 30年教育教学经验</p>
@@ -242,26 +273,25 @@
                 <!-- 动态柱状图区 -->
                 <div class="stats-section">
                     <div class="stats-title">核心战绩数据</div>
-                    <div class="chart-container" id="chartContainer">
-                        <!-- 柱子由 JS 生成 -->
-                    </div>
+                    <div class="chart-container" id="chartContainer"></div>
                 </div>
             </div>
         </section>
 
         <!-- 核心优势区 -->
         <section class="features-section">
-            <div class="feature-grid" id="featureGrid">
-                <!-- 优势卡片由 JS 生成 -->
-            </div>
+            <div class="feature-grid" id="featureGrid"></div>
+        </section>
+
+        <!-- 精英培养与突破区 -->
+        <section class="service-section">
+            <div class="service-grid" id="serviceGrid"></div>
         </section>
 
         <!-- 视频展示区 -->
         <section class="video-section">
             <h2 class="section-title">教学成果与分享</h2>
-            <div class="video-grid" id="videoGrid">
-                <!-- 视频卡片由 JS 生成 -->
-            </div>
+            <div class="video-grid" id="videoGrid"></div>
         </section>
     </div>
 
@@ -271,7 +301,7 @@
 
     <script>
         // ============================================================
-        // 数据配置区
+        // 数据配置区（你只需要改这里）
         // ============================================================
         
         // 1. 柱状图数据
@@ -288,33 +318,58 @@
             { icon: '📈', title: '结果导向', desc: '98%成功率，拒绝无效努力' }
         ];
 
-        // 3. 视频配置（填入抖音或B站的嵌入代码链接）
+        // 3. ⭐ 爸爸新增的精英培养项目 ⭐
+        const serviceData = [
+            { 
+                icon: '🚀', 
+                title: '下等生逆袭上等生', 
+                desc: '打破常规，<span class="service-highlight">不放弃任何一个孩子</span>，通过系统化教学体系，让基础薄弱的学生实现跨越式逆袭。' 
+            },
+            { 
+                icon: '👨‍🏫', 
+                title: '普通教师变高级教师', 
+                desc: '重磅启动：<span class="service-highlight">2026年10月正式启动</span>，针对各初中、高中学校普通教师，提供定制化培养方案，助其晋升高级教师。' 
+            },
+            { 
+                icon: '🏆', 
+                title: '学校高考突破计划', 
+                desc: '深入各中学校培训师生，<span class="service-highlight">普通高中突破30名左右上岸600分以上，重点高中突破60-80名以上</span>，实现高考成绩质的飞跃。' 
+            }
+        ];
+
+        // 4. ⭐ 视频配置（直接填入你发我的抖音链接） ⭐
         const videoData = [
-            { title: "中等生逆袭985的真实案例", desc: "分享一位普通中学生如何通过三年规划成功上岸985大学的心路历程。", videoUrl: "" },
-            { title: "教育集团策划实战分享", desc: "30年经验总结：如何为教育集团做顶层设计与战略规划。", videoUrl: "" },
-            { title: "家长课堂：如何激发孩子内驱力", desc: "针对中小学生，家长如何配合学校做好家庭教育。", videoUrl: "" }
+            { 
+                title: "真实案例分享 01", 
+                desc: "点击卡片，直接跳转到抖音App观看高清视频。", 
+                videoUrl: "https://v.douyin.com/FJ_s416842A/:6pmeoQ:/01/17y@g.Ok" 
+            },
+            { 
+                title: "真实案例分享 02", 
+                desc: "点击卡片，直接跳转到抖音App观看高清视频。", 
+                videoUrl: "https://v.douyin.com/q9bhkBunlmE/Wzg:/01/05:8pmN@w.FH" 
+            },
+            { 
+                title: "更多实战经验分享", 
+                desc: "（预留位置，后续可添加更多视频）", 
+                videoUrl: "https://v.douyin.com/q9bhkBunlmE/Wzg:/01/05:8pmN@w.FH" 
+            }
         ];
 
         // ============================================================
         // 核心逻辑：生成内容 + 动效监听
         // ============================================================
         function renderApp() {
-            // 1. 渲染柱状图 (根据数值计算视觉高度)
+            // 1. 渲染柱状图
             const chartContainer = document.getElementById('chartContainer');
             chartContainer.innerHTML = '';
-            
             const maxVal = Math.max(...chartData.map(d => d.value));
-            
             chartData.forEach((item, index) => {
                 let visualHeight = (item.value / maxVal) * 80; 
-                visualHeight = Math.max(visualHeight, 20); // 最低20%
-
+                visualHeight = Math.max(visualHeight, 20); 
+                const delay = index * 0.3 + 0.2; 
                 const wrapper = document.createElement('div');
                 wrapper.className = 'bar-wrapper';
-                
-                // 依次上升的延迟时间
-                const delay = index * 0.3 + 0.2; 
-
                 wrapper.innerHTML = `
                     <div class="bar-num" style="transition-delay: ${delay + 0.8}s">${item.value}${item.unit}</div>
                     <div class="bar" data-height="${visualHeight}%" style="transition-delay: ${delay}s"></div>
@@ -336,22 +391,39 @@
                 featureGrid.appendChild(card);
             });
 
-            // 3. 渲染视频卡片
+            // 3. 渲染精英培养模块
+            const serviceGrid = document.getElementById('serviceGrid');
+            serviceData.forEach(srv => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <div class="service-icon">${srv.icon}</div>
+                    <div class="service-content">
+                        <h4>${srv.title}</h4>
+                        <p>${srv.desc}</p>
+                    </div>
+                `;
+                serviceGrid.appendChild(card);
+            });
+
+            // 4. 渲染视频卡片（跳转模式）
             const grid = document.getElementById('videoGrid');
             grid.innerHTML = ''; 
             videoData.forEach((video) => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
+                
+                // 点击整张卡片跳转
+                card.onclick = () => {
+                    window.open(video.videoUrl, '_blank');
+                };
 
-                let mediaContent = '';
-                if (video.videoUrl && video.videoUrl.trim() !== '') {
-                    mediaContent = `<div style="width:100%; aspect-ratio:16/9;"><iframe src="${video.videoUrl}" style="width:100%; height:100%;" frameborder="0" allowfullscreen></iframe></div>`;
-                } else {
-                    mediaContent = `<div class="video-placeholder"><div class="play-icon">▶</div><span>视频准备中</span></div>`;
-                }
-
+                // 显示的内容（带播放按钮和提示）
                 card.innerHTML = `
-                    ${mediaContent}
+                    <div class="video-placeholder">
+                        <div class="play-icon">▶</div>
+                        <span style="font-weight: 500; font-size: 0.95rem;">点击前往抖音观看</span>
+                    </div>
                     <div class="video-info">
                         <h3>${video.title}</h3>
                         <p>${video.desc}</p>
@@ -360,19 +432,12 @@
                 grid.appendChild(card);
             });
 
-            // 4. 滚动动画监听器
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.1
-            };
-
+            // 5. 滚动动画监听器
+            const observerOptions = { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show');
-                        
-                        // 如果是顶部卡片，触发柱状图生长动画
                         if (entry.target.id === 'heroCard') {
                             setTimeout(() => {
                                 document.querySelectorAll('.bar').forEach(bar => {
@@ -383,13 +448,12 @@
                                 });
                             }, 300); 
                         }
-                        
                         obs.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);
 
-            const elementsToAnimate = document.querySelectorAll('#heroCard, .feature-card, .video-card');
+            const elementsToAnimate = document.querySelectorAll('#heroCard, .feature-card, .service-card, .video-card');
             elementsToAnimate.forEach(el => observer.observe(el));
         }
 
