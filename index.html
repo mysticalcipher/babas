@@ -177,6 +177,37 @@
         .service-content p { font-size: 0.9rem; color: var(--text-light); }
         .service-highlight { color: var(--primary-blue); font-weight: 700; }
 
+        /* --- 新增：2026规划与奖励模块 --- */
+        .plan-section { padding: 30px 0 10px; }
+        .plan-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0F5FF 100%);
+            border: 1px solid rgba(95, 134, 255, 0.3);
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 15px 35px var(--shadow-soft);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .plan-card.show { opacity: 1; transform: translateY(0); }
+        .plan-title {
+            font-size: 1.3rem; font-weight: 800; color: var(--primary-blue);
+            margin-bottom: 20px; text-align: center; letter-spacing: 1px;
+        }
+        .plan-list { list-style: none; }
+        .plan-list li {
+            position: relative; padding-left: 25px; margin-bottom: 18px;
+            font-size: 0.95rem; color: var(--text-dark);
+        }
+        .plan-list li::before {
+            content: '★'; position: absolute; left: 0; top: 0; color: var(--primary-blue); font-size: 0.9rem;
+        }
+        .plan-list li:last-child { margin-bottom: 0; }
+        .reward-text {
+            background: rgba(95, 134, 255, 0.08);
+            padding: 2px 6px; border-radius: 4px; font-weight: 700; color: var(--primary-blue);
+        }
+
         /* --- 视频展示区 --- */
         .video-section { padding: 30px 0 60px; }
         .section-title {
@@ -204,17 +235,16 @@
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, box-shadow 0.4s ease;
             opacity: 0;
             transform: translateY(50px); 
-            cursor: pointer; /* 鼠标放上去变成小手，表示可以点击 */
+            cursor: pointer;
         }
 
         .video-card.show { opacity: 1; transform: translateY(0); }
         .video-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 35px var(--shadow-glow);
-            border-color: var(--primary-blue); /* 悬浮时边框变蓝 */
+            border-color: var(--primary-blue);
         }
 
-        /* 跳转按钮的样式 */
         .video-placeholder {
             width: 100%; aspect-ratio: 16 / 9;
             background: #EEF3FB;
@@ -230,7 +260,7 @@
             transition: transform 0.3s;
             background: rgba(95, 134, 255, 0.1); width: 60px; height: 60px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            padding-left: 5px; /* 视觉居中微调 */
+            padding-left: 5px;
         }
         .video-card:hover .play-icon { transform: scale(1.1); background: rgba(95, 134, 255, 0.2); }
 
@@ -255,6 +285,7 @@
             .feature-grid { grid-template-columns: 1fr; gap: 12px; }
             .video-grid { grid-template-columns: 1fr; }
             .service-card { padding: 20px 15px; }
+            .plan-card { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -265,6 +296,7 @@
         <section class="hero">
             <div class="hero-content" id="heroCard">
                 <div class="avatar-box">
+                    <!-- ⚠️ 已修改为 avatar.jpg.png，请确保上传的图片名字一致 -->
                     <img src="avatar.jpg.png" alt="黔岭985领航工作室创始人">
                 </div>
                 <h1 class="hero-title">黔岭985领航工作室</h1>
@@ -288,6 +320,16 @@
             <div class="service-grid" id="serviceGrid"></div>
         </section>
 
+        <!-- ⭐ 新增：2026规划与奖励模块 ⭐ -->
+        <section class="plan-section">
+            <div class="plan-card" id="planCard">
+                <h3 class="plan-title">2026年10月起工作室规划实施方案</h3>
+                <ul class="plan-list" id="planList">
+                    <!-- JS 自动生成 -->
+                </ul>
+            </div>
+        </section>
+
         <!-- 视频展示区 -->
         <section class="video-section">
             <h2 class="section-title">教学成果与分享</h2>
@@ -306,19 +348,19 @@
         
         // 1. 柱状图数据
         const chartData = [
-            { label: '中等生逆袭成功率', value: 98, unit: '%' },
+            { label: '中差等生逆袭成功率', value: 98, unit: '%' },  // 已修改
             { label: '学员上岸211/985', value: 200, unit: '+' },
             { label: '深耕教育年限', value: 30, unit: '年' }
         ];
 
         // 2. 核心优势配置
         const featureData = [
-            { icon: '🎯', title: '精准定位', desc: '专攻中等生逆袭，直击痛点' },
+            { icon: '🎯', title: '精准定位', desc: '专攻中差等生逆袭，直击痛点' }, // 已修改
             { icon: '🧠', title: '独家方法论', desc: '30年经验沉淀，自成体系' },
             { icon: '📈', title: '结果导向', desc: '98%成功率，拒绝无效努力' }
         ];
 
-        // 3. ⭐ 爸爸新增的精英培养项目 ⭐
+        // 3. 精英培养项目
         const serviceData = [
             { 
                 icon: '🚀', 
@@ -337,7 +379,14 @@
             }
         ];
 
-        // 4. ⭐ 视频配置（直接填入你发我的抖音链接） ⭐
+        // 4. ⭐ 2026规划与奖励数据 ⭐
+        const planData = [
+            { text: '培养、培训一批初中、高中普通教师变为高级教师和名师。' },
+            { text: '进入各中学内培训一批高中师生，普高高考每年产出600分以上20-40名，重高产出600分以上60-80名。' },
+            { text: '接受乡镇村级邀请培训乡镇村高考状元，暨本乡镇村任何一年出清北状元，本工作室奖励<span class="reward-text">5000元/人</span>；乡村镇级出现县高考状元前三名分别奖<span class="reward-text">1000-3000元</span>。' }
+        ];
+
+        // 5. 视频配置（直接填入抖音链接）
         const videoData = [
             { 
                 title: "真实案例分享 01", 
@@ -406,19 +455,22 @@
                 serviceGrid.appendChild(card);
             });
 
-            // 4. 渲染视频卡片（跳转模式）
+            // 4. 渲染2026规划与奖励
+            const planList = document.getElementById('planList');
+            planList.innerHTML = '';
+            planData.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = item.text;
+                planList.appendChild(li);
+            });
+
+            // 5. 渲染视频卡片（跳转模式）
             const grid = document.getElementById('videoGrid');
             grid.innerHTML = ''; 
             videoData.forEach((video) => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
-                
-                // 点击整张卡片跳转
-                card.onclick = () => {
-                    window.open(video.videoUrl, '_blank');
-                };
-
-                // 显示的内容（带播放按钮和提示）
+                card.onclick = () => { window.open(video.videoUrl, '_blank'); };
                 card.innerHTML = `
                     <div class="video-placeholder">
                         <div class="play-icon">▶</div>
@@ -432,7 +484,7 @@
                 grid.appendChild(card);
             });
 
-            // 5. 滚动动画监听器
+            // 6. 滚动动画监听器
             const observerOptions = { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -453,7 +505,7 @@
                 });
             }, observerOptions);
 
-            const elementsToAnimate = document.querySelectorAll('#heroCard, .feature-card, .service-card, .video-card');
+            const elementsToAnimate = document.querySelectorAll('#heroCard, .feature-card, .service-card, .plan-card, .video-card');
             elementsToAnimate.forEach(el => observer.observe(el));
         }
 
